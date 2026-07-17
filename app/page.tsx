@@ -2,21 +2,21 @@ import ContactForm from "@/components/ContactForm";
 import { site, waLink } from "@/lib/site";
 
 const menu = [
-  { icon: "🌅", name: "Es Kopi Senja", desc: "Signature kami — espresso, gula aren, susu segar, dan sentuhan pandan.", price: "Rp24.000" },
-  { icon: "☕", name: "Manual Brew V60", desc: "Single origin pilihan (Gayo / Toraja / Kintamani), diseduh perlahan.", price: "Rp28.000" },
-  { icon: "🥛", name: "Butterscotch Latte", desc: "Espresso double shot dengan butterscotch house-made dan susu oat.", price: "Rp32.000" },
-  { icon: "🍰", name: "Basque Burnt Cheesecake", desc: "Lembut di dalam, karamel di luar. Pasangan sempurna kopi hitam.", price: "Rp35.000" },
-  { icon: "🍞", name: "Sourdough Toast", desc: "Roti sourdough panggang dengan scrambled egg dan smoked beef.", price: "Rp38.000" },
-  { icon: "🍵", name: "Houjicha Latte", desc: "Teh hijau panggang Jepang dengan susu segar.", price: "Rp30.000" },
+  { img: "/img/menu-es-kopi-senja.jpg", name: "Es Kopi Senja", desc: "Signature kami — espresso, gula aren, susu segar, dan sentuhan pandan.", price: "Rp24.000" },
+  { img: "/img/menu-v60.jpg", name: "Manual Brew V60", desc: "Single origin pilihan (Gayo / Toraja / Kintamani), diseduh perlahan.", price: "Rp28.000" },
+  { img: "/img/menu-butterscotch-latte.jpg", name: "Butterscotch Latte", desc: "Espresso double shot dengan butterscotch house-made dan susu oat.", price: "Rp32.000" },
+  { img: "/img/menu-basque-cheesecake.jpg", name: "Basque Burnt Cheesecake", desc: "Lembut di dalam, karamel di luar. Pasangan sempurna kopi hitam.", price: "Rp35.000" },
+  { img: "/img/menu-sourdough-toast.jpg", name: "Sourdough Toast", desc: "Roti sourdough panggang dengan scrambled egg dan smoked beef.", price: "Rp38.000" },
+  { img: "/img/menu-houjicha-latte.jpg", name: "Houjicha Latte", desc: "Teh hijau panggang Jepang dengan susu segar.", price: "Rp30.000" },
 ];
 
 const gallery = [
-  { emoji: "☕", bg: "from-amber to-[#8a5a2b]" },
-  { emoji: "🪴", bg: "from-brown to-[#7a4a28]" },
-  { emoji: "🥐", bg: "from-[#e0b878] to-amber" },
-  { emoji: "📖", bg: "from-[#6b4226] to-brown" },
-  { emoji: "🎶", bg: "from-[#8a5a2b] to-amber" },
-  { emoji: "🌇", bg: "from-brown-dark to-[#6b4226]" },
+  "/img/gallery-1.jpg",
+  "/img/gallery-2.jpg",
+  "/img/gallery-3.jpg",
+  "/img/gallery-4.jpg",
+  "/img/gallery-5.jpg",
+  "/img/gallery-6.jpg",
 ];
 
 const packages = [
@@ -68,9 +68,14 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-brown-dark via-brown to-[#6b4226] py-28 text-cream">
-        <span aria-hidden className="absolute -bottom-20 -right-10 rotate-[-15deg] text-[340px] opacity-[0.07]">☕</span>
+        <img
+          src="/img/hero.jpg"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-15"
+        />
         <div className="relative mx-auto max-w-5xl px-5">
-          <Eyebrow>☕ Specialty Coffee · Jakarta</Eyebrow>
+          <Eyebrow>Specialty Coffee · Jakarta</Eyebrow>
           <h1 className="max-w-2xl text-4xl font-bold leading-tight md:text-6xl">
             Tempat Terbaik Menikmati Senja &amp; Kopi
           </h1>
@@ -98,9 +103,12 @@ export default function Home() {
       {/* About */}
       <section id="about" className="py-20">
         <div className="mx-auto grid max-w-5xl items-center gap-14 px-5 md:grid-cols-2">
-          <div className="flex aspect-[4/3] items-center justify-center rounded-3xl bg-gradient-to-br from-amber to-brown text-8xl shadow-2xl shadow-brown/25">
-            ☕
-          </div>
+          <img
+            src="/img/hero.jpg"
+            alt="Suasana Kopi Senja"
+            loading="lazy"
+            className="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl shadow-brown/25"
+          />
           <div>
             <Eyebrow>Tentang Kami</Eyebrow>
             <h2 className="text-3xl font-bold text-brown-dark md:text-4xl">
@@ -138,11 +146,15 @@ export default function Home() {
           </p>
           <div className="mt-12 grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
             {menu.map((m) => (
-              <div key={m.name} className="rounded-2xl bg-cream p-7 transition-all hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brown/10">
-                <span className="text-4xl">{m.icon}</span>
-                <h3 className="mt-3.5 text-xl font-bold text-brown-dark">{m.name}</h3>
-                <p className="mt-2 text-sm text-latte">{m.desc}</p>
-                <span className="mt-3.5 block text-lg font-bold text-amber">{m.price}</span>
+              <div key={m.name} className="overflow-hidden rounded-2xl bg-cream transition-all hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brown/10">
+                <img src={m.img} alt={m.name} loading="lazy" className="aspect-[4/3] w-full object-cover" />
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-lg font-bold text-brown-dark">{m.name}</h3>
+                    <span className="shrink-0 text-base font-bold text-amber">{m.price}</span>
+                  </div>
+                  <p className="mt-2 text-sm text-latte">{m.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -155,13 +167,14 @@ export default function Home() {
           <Eyebrow>Gallery</Eyebrow>
           <h2 className="text-3xl font-bold text-brown-dark md:text-4xl">Suasana Kopi Senja</h2>
           <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
-            {gallery.map((g, i) => (
-              <div
+            {gallery.map((src, i) => (
+              <img
                 key={i}
-                className={`flex aspect-square items-center justify-center rounded-2xl bg-gradient-to-br text-5xl transition-transform hover:scale-[1.03] ${g.bg}`}
-              >
-                {g.emoji}
-              </div>
+                src={src}
+                alt={`Kopi Senja ${i + 1}`}
+                loading="lazy"
+                className="aspect-square w-full rounded-2xl object-cover transition-transform hover:scale-[1.03]"
+              />
             ))}
           </div>
         </div>
